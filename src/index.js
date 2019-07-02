@@ -1,4 +1,7 @@
 console.log("Hello Webpack Project.");
+import { dupa } from "./App";
+
+dupa();
 
 document
   .querySelector("button")
