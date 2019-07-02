@@ -1,0 +1,12 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/MaciejReimann/portfolio.git",
+  "author": "Maciej Reimann <maciej.reimann@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "webpack-cli": "^3.3.5",
+    "webpack-dev-server": "^3.7.2"
+  }
+}
