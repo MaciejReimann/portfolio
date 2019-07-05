@@ -1,7 +1,9 @@
 console.log("Hello Webpack Project.");
-import { dupa } from "./App";
+import { dupa, arr2 } from "./App";
 
 dupa();
+
+console.log(arr2);
 
 document
   .querySelector("button")
