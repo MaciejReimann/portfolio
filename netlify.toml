@@ -1,3 +1,4 @@
+[build]
 base = "portfolio/"
 publish = "portfolio/dist/"
 command = "yarn build"
