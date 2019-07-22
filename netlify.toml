@@ -1,4 +1,4 @@
 [build]
-base = "portfolio/"
-publish = "portfolio/dist/"
+base = "/"
+publish = "dist/"
 command = "yarn build"
