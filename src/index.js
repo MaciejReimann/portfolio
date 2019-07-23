@@ -1,10 +1,10 @@
-console.log("Hello Webpack Project.");
-import { dupa, arr2 } from "./App";
+import React from "react";
+import ReactDOM from "react-dom";
+import App from "./App";
 
-dupa();
-
-console.log(arr2);
-
-document
-  .querySelector("button")
-  .addEventListener("click", () => console.log("button clicked!"));
+ReactDOM.render(
+  <div>
+    <App />
+  </div>,
+  document.getElementById("app")
+);

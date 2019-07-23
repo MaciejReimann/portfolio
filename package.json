@@ -22,6 +22,8 @@
   "dependencies": {
     "global": "^4.4.0",
     "http-server": "^0.11.1",
-    "netlify-cli": "^2.11.23"
+    "netlify-cli": "^2.11.23",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
   }
 }
