@@ -8,3 +8,5 @@ ReactDOM.render(
   </div>,
   document.getElementById("app")
 );
+
+module.hot.accept();
