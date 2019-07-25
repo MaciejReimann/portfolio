@@ -1,18 +1,30 @@
 const webpack = require("webpack");
 
 module.exports = {
-  entry: "./src/index.js",
+  entry: "./src/index.tsx",
+  // Enable sourcemaps for debugging webpack's output.
+  devtool: "source-map",
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/,
+        test: /\.(js|ts|tsx)$/,
         exclude: /node_modules/,
-        use: ["babel-loader"]
+        use: [
+          {
+            loader: "ts-loader"
+          }
+        ]
+      },
+      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
+      {
+        enforce: "pre",
+        test: /\.js$/,
+        loader: "source-map-loader"
       }
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx"]
+    extensions: ["*", ".js", ".jsx", "ts", "tsx"]
   },
   output: {
     path: __dirname + "/dist",
@@ -23,4 +35,8 @@ module.exports = {
   devServer: {
     contentBase: "./dist"
   }
+  // externals: {
+  //   "react": "React",
+  //   "react-dom": "ReactDOM"
+  // }
 };
