@@ -1,4 +1,7 @@
+const path = require("path");
 const webpack = require("webpack");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -7,7 +10,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|ts|tsx)$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -24,19 +27,21 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ["*", ".js", ".jsx", "ts", "tsx"]
+    extensions: [".ts", ".tsx", ".js"]
   },
   output: {
-    path: __dirname + "/dist",
+    path: path.join(__dirname, "/dist"),
     publicPath: "/",
     filename: "bundle.js"
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: "./src/index.html"
+    }),
+    new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin() // ??
+  ],
   devServer: {
     contentBase: "./dist"
   }
-  // externals: {
-  //   "react": "React",
-  //   "react-dom": "ReactDOM"
-  // }
 };

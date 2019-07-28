@@ -1,5 +1,12 @@
 import React from "react";
 
-const App = () => <div>Webpack with React</div>;
+import Project1 from "./Projects/Project1";
+
+const App = () => (
+  <div>
+    Webpack with React
+    <Project1 />
+  </div>
+);
 
 export default App;
