@@ -1,13 +1,13 @@
 {
   "name": "portfolio",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "index.tsx",
   "repository": "https://github.com/MaciejReimann/portfolio.git",
   "author": "Maciej Reimann <maciej.reimann@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development --open --hot",
-    "build": "webpack --config ./webpack.config.js --mode production",
+    "start": "webpack-dev-server --config ./webpack.dev.js --open --hot",
+    "build": "webpack --config ./webpack.prod.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -21,9 +21,9 @@
     "html-webpack-plugin": "^3.2.0",
     "plugin": "^0.3.3",
     "source-map-loader": "^0.2.4",
-    "webpack": "^4.35.2",
+    "webpack": "^4.39.2",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.7.2"
+    "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
     "@types/webpack": "^4.32.1",
