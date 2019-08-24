@@ -6,8 +6,8 @@
   "author": "Maciej Reimann <maciej.reimann@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.dev.js --open --hot",
-    "build": "webpack --config ./webpack.prod.js",
+    "start": "webpack-dev-server --config build-utils/webpack.config.js --open --hot --env.env=dev",
+    "build": "webpack --config build-utils/webpack.config.js --env.env=prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
@@ -23,7 +23,8 @@
     "source-map-loader": "^0.2.4",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.5",
-    "webpack-dev-server": "^3.8.0"
+    "webpack-dev-server": "^3.8.0",
+    "webpack-merge": "^4.2.1"
   },
   "dependencies": {
     "@types/webpack": "^4.32.1",

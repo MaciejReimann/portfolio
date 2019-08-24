@@ -1,13 +1,11 @@
-const path = require("path");
 const webpack = require("webpack");
+const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
-  mode: "development",
   entry: "./src/index.tsx",
   // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
   module: {
     rules: [
       {
@@ -30,11 +28,6 @@ module.exports = {
   resolve: {
     extensions: [".ts", ".tsx", ".js"]
   },
-  output: {
-    path: path.join(__dirname, "/dist"),
-    publicPath: "/",
-    filename: "bundle.js"
-  },
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
@@ -42,6 +35,11 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin() // ??
   ],
+  output: {
+    path: path.join(__dirname, "../", "dist"),
+    publicPath: "/",
+    filename: "bundle.js"
+  },
   devServer: {
     contentBase: "./dist"
   }
