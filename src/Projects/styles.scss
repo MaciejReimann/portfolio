@@ -1,0 +1,11 @@
+$color-red: red;
+$color-blue: blue;
+
+.project {
+  &-red {
+    color: $color-red;
+  }
+  &-blue {
+    color: $color-blue;
+  }
+}

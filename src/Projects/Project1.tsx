@@ -1,7 +1,7 @@
 import React from "react";
 
-import "./styles.css";
+import "./styles.scss";
 
-const Project1 = () => <div className={"project"}>Project 1</div>;
+const Project1 = () => <div className={"project-red"}>Project 1</div>;
 
 export default Project1;
