@@ -34,7 +34,7 @@ module.exports = {
       {
         test: /\.s?.css$/,
         //  This tells webpack to match .scss / .css files against the first rule that’s valid.
-        // If the .scss / .css file ends in .module.css, use css modules. Else, use global styles.
+        //  If the .scss / .css file ends in .module.css, use css modules. Else, use global styles.
         oneOf: [
           {
             test: /\.module\.s?.css$/,
@@ -43,10 +43,16 @@ module.exports = {
               { loader: "css-modules-typescript-loader" },
               {
                 loader: "css-loader",
-                // Note that the exportOnlyLocals ( changed to onlyLocals) may not be needed,
-                // as it should be the default; however, I’ve seen weird errors without it.
-                // https://adamrackis.dev/css-modules/ = TODO -> check the docs!!!
-                options: { modules: true, onlyLocals: false }
+                // TODO: see documentation for fine-tuning dev experience!
+                // https://github.com/webpack-contrib/css-loader
+                options: {
+                  localsConvention: "camelCase",
+                  onlyLocals: true,
+                  modules: {
+                    mode: "local",
+                    localIdentName: "[name]__[local]"
+                  }
+                }
               },
               { loader: "sass-loader" }
             ]

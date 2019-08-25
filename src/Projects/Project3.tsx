@@ -1,9 +1,9 @@
 import React from "react";
 
-import "../styles.scss";
+import styles from "./Project3.module.scss";
 
 const Project3 = () => (
-  <h2 className={"header"}>
+  <h2 className={styles.header}>
     <div>Project 3</div>
   </h2>
 );
