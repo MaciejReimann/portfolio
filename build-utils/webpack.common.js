@@ -2,6 +2,7 @@ const webpack = require("webpack");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
@@ -22,6 +23,10 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader"
+      },
+      {
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader"]
       }
     ]
   },
