@@ -1,5 +1,11 @@
 import React from "react";
 
-const Project3 = () => <div>Project 3</div>;
+import "../styles.scss";
+
+const Project3 = () => (
+  <h2 className={"header"}>
+    <div>Project 3</div>
+  </h2>
+);
 
 export default Project3;

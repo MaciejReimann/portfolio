@@ -1,5 +1,7 @@
 import React from "react";
 
-const Project2 = () => <div className={"project-blue"}>Project 2</div>;
+import styles from "./Project2.module.scss";
+
+const Project2 = () => <div className={styles.blue}>Project 2</div>;
 
 export default Project2;

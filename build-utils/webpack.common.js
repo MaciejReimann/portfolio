@@ -6,7 +6,14 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
-  // Enable sourcemaps for debugging webpack's output.
+  output: {
+    path: path.join(__dirname, "../", "dist"),
+    publicPath: "/",
+    filename: "bundle.js"
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
+  },
   module: {
     rules: [
       {
@@ -26,13 +33,37 @@ module.exports = {
       },
       {
         test: /\.s?.css$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+        //  This tells webpack to match .scss / .css files against the first rule that’s valid.
+        // If the .scss / .css file ends in .module.css, use css modules. Else, use global styles.
+        oneOf: [
+          {
+            test: /\.module\.s?.css$/,
+            use: [
+              { loader: "style-loader" },
+              { loader: "css-modules-typescript-loader" },
+              {
+                loader: "css-loader",
+                // Note that the exportOnlyLocals ( changed to onlyLocals) may not be needed,
+                // as it should be the default; however, I’ve seen weird errors without it.
+                // https://adamrackis.dev/css-modules/ = TODO -> check the docs!!!
+                options: { modules: true, onlyLocals: false }
+              },
+              { loader: "sass-loader" }
+            ]
+          },
+          {
+            use: [
+              "style-loader",
+              MiniCssExtractPlugin.loader,
+              "css-loader",
+              "sass-loader"
+            ]
+          }
+        ]
       }
     ]
   },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
@@ -40,11 +71,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin() // ??
   ],
-  output: {
-    path: path.join(__dirname, "../", "dist"),
-    publicPath: "/",
-    filename: "bundle.js"
-  },
+
   devServer: {
     contentBase: "./dist"
   }
