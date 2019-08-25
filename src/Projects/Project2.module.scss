@@ -1,6 +1,6 @@
-$color-blue: blue;
+@import "src/_theme/styles";
 
-.blue {
+.header-blue {
   color: $color-blue;
   font-size: 32px;
 }

@@ -1,6 +1,6 @@
-$color-red: red;
+@import "src/_theme/styles";
 
-.red {
+.header-red {
   color: $color-red;
   font-size: 56px;
 }
