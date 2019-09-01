@@ -46,12 +46,12 @@ module.exports = {
                 // TODO: see documentation for fine-tuning dev experience!
                 // https://github.com/webpack-contrib/css-loader
                 options: {
-                  localsConvention: "camelCase",
-                  onlyLocals: true,
+                  // Enables/Disables CSS Modules and their configuration.
                   modules: {
-                    mode: "local",
                     localIdentName: "[name]__[local]"
-                  }
+                    // TODO: check how to eliminate "module" from resolved classname
+                  },
+                  localsConvention: "camelCase"
                 }
               },
               { loader: "sass-loader" }

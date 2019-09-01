@@ -6,7 +6,6 @@ import Project2 from "./Projects/Project2";
 import Project3 from "./Projects/Project3";
 
 const App = () => {
-  // const tetris = Tetris();
   console.log(Tetris.printHello());
   return (
     <div>
