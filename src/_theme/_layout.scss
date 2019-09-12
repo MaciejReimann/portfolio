@@ -1,0 +1,9 @@
+// MAIN CONTENT
+$sidebar-width: 175px;
+$header-height: 20vh;
+$header-width: 100vw;
+$content-height: calc(100vh - #{$header-height});
+$content-width: calc(100vw - #{$sidebar-width});
+
+$content-item-padding: 20px;
+$content-item-height: calc(#{$content-height} - 2 * #{$content-item-padding});

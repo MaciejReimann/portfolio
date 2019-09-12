@@ -1,19 +1,24 @@
 import React from "react";
-import Tetris from "@maciejreimann/tetris";
+//
+import SiteLayout from "./Layout/SiteLayout";
+import FixedHeader from "./Layout/FixedHeader";
+import FixedSidebar from "./Layout/FixedSidebar";
+import ContentLayout from "./Layout/ContentLayout";
+//
+import SidebarLinks from "./Content/SidebarLinks";
+import Projects from "./Content/Projects";
 
-import Project1 from "./Projects/Project1";
-import Project2 from "./Projects/Project2";
-import Project3 from "./Projects/Project3";
+import Tetris from "@maciejreimann/tetris";
 
 const App = () => {
   console.log(Tetris.printHello());
+
   return (
-    <div>
-      Webpack with React
-      <Project1 />
-      <Project2 />
-      <Project3 />
-    </div>
+    <SiteLayout
+      header={<FixedHeader />}
+      sidebar={<FixedSidebar content={<SidebarLinks />} />}
+      content={<ContentLayout contentItems={Projects()} />}
+    />
   );
 };
 

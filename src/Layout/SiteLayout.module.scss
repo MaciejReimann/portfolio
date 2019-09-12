@@ -1,0 +1,21 @@
+@import "src/_theme/_styles";
+
+.header {
+  width: $header-width;
+  height: $header-height;
+}
+
+.sidebar {
+  height: $content-height;
+  width: $sidebar-width;
+  margin-right: 20px;
+}
+
+.content {
+  position: absolute;
+  left: $sidebar-width;
+  top: $header-height;
+  width: $content-width;
+  background-color: $main-color;
+  // height: 100%;
+}
