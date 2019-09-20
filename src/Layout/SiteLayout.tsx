@@ -1,7 +1,5 @@
 import React, { useRef, useEffect, useContext } from "react"
 
-import { PortfolioContext } from "../App"
-
 import styles from "./SiteLayout.module.scss"
 
 const SiteLayout = ({ header, sidebar, content }) => {

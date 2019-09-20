@@ -10,8 +10,6 @@ const SidebarLinks = () => {
   const [projectsData, setProjectData] = useState(null)
   const [topPosition, setTopPosition] = useState(0)
 
-  // console.log(context.getHeaderBounding())
-
   useEffect(() => {
     !projectsData &&
       context
@@ -19,14 +17,11 @@ const SidebarLinks = () => {
         .then(result => setProjectData(result))
   })
 
-  console.log(projectsData)
-
   useEffect(() => {
     window.scrollTo({ top: topPosition, behavior: "smooth" })
   }, [topPosition])
 
   const handleClick = position => {
-    console.log(position)
     setTopPosition(position)
   }
 
