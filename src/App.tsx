@@ -3,9 +3,11 @@ import React, { createContext } from "react"
 import SiteLayout from "./Layout/SiteLayout"
 import FixedHeader from "./Layout/FixedHeader"
 import FixedSidebar from "./Layout/FixedSidebar"
+import ContentWrapper from "./Layout/ContentWrapper"
+
 //
 import SidebarLinks from "./Content/SidebarLinks"
-import { ProjectContainer } from "./Content/ProjectContainer"
+
 //
 import { FeaturedProjects } from "./Content/Projects/featured-projects"
 //
@@ -23,13 +25,7 @@ const App = () => {
       <SiteLayout
         header={<FixedHeader />}
         sidebar={<FixedSidebar content={<SidebarLinks />} />}
-        content={FeaturedProjects.map(({ description, component }) => (
-          <div key={description.name}>
-            <ProjectContainer description={description} key={description.name}>
-              {component}
-            </ProjectContainer>
-          </div>
-        ))}
+        content={<ContentWrapper projects={FeaturedProjects} />}
       />
     </PortfolioContext.Provider>
   )
