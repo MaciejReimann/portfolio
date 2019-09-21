@@ -1,0 +1,12 @@
+@import "src/_theme/_styles";
+
+.wrapper {
+  background-color: $main-color;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer {
+  height: $footer-height;
+  width: $footer-width;
+}

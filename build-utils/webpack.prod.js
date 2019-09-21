@@ -1,11 +1,16 @@
 const Dotenv = require("dotenv-webpack");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   mode: "production",
+  // Enable sourcemaps for debugging webpack's output.
   devtool: "source-map",
   plugins: [
     new Dotenv({
       path: "./.env.production"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name]-[contenthash].css"
     })
   ]
 };

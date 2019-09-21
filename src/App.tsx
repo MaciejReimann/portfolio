@@ -1,16 +1,34 @@
-import React from "react";
+import React, { createContext } from "react"
+//
+import SiteLayout from "./Layout/SiteLayout"
+import FixedHeader from "./Layout/FixedHeader"
+import FixedSidebar from "./Layout/FixedSidebar"
+import ContentWrapper from "./Layout/ContentWrapper"
 
-import Project1 from "./Projects/Project1";
-import Project2 from "./Projects/Project2";
-import Project3 from "./Projects/Project3";
+//
+import SidebarLinks from "./Content/SidebarLinks"
 
-const App = () => (
-  <div>
-    Webpack with React
-    <Project1 />
-    <Project2 />
-    <Project3 />
-  </div>
-);
+//
+import { FeaturedProjects } from "./Content/Projects/featured-projects"
+//
+import { Portfolio } from "./State/portfolio-state"
+//
+import Tetris from "@maciejreimann/tetris"
 
-export default App;
+const portfolioState = new Portfolio()
+
+export const PortfolioContext = createContext(portfolioState)
+
+const App = () => {
+  return (
+    <PortfolioContext.Provider value={portfolioState}>
+      <SiteLayout
+        header={<FixedHeader />}
+        sidebar={<FixedSidebar content={<SidebarLinks />} />}
+        content={<ContentWrapper projects={FeaturedProjects} />}
+      />
+    </PortfolioContext.Provider>
+  )
+}
+
+export default App
