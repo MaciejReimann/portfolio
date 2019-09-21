@@ -5,27 +5,27 @@ import { getBoundingClientRect } from "../Helpers/getBoundingClientRect"
 import styles from "./ProjectContainer.module.scss"
 
 interface ProjectContainerProps {
-  name: string
+  description: any
   children: any
 }
 
 export const ProjectContainer: FC<ProjectContainerProps> = ({
-  name,
+  description,
   children
 }) => {
   const context = useContext(PortfolioContext)
   const projectDiv = useRef(null)
 
+  context.addRenderedProject(description)
+
   useEffect(() => {
-    context.setContainersBoundingClientRects({
-      name,
-      ...getBoundingClientRect(projectDiv.current)
-    })
+    const projectBoundingRect = getBoundingClientRect(projectDiv.current)
+    context.setElementBoundingRect(description.name, projectBoundingRect)
   })
 
   return (
     <div className={styles.wrapper} ref={projectDiv}>
-      <div>{name}</div>
+      <div>{description.name}</div>
       <div>{children}</div>
     </div>
   )

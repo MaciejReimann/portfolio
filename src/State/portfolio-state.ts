@@ -1,7 +1,4 @@
-import {
-  getBoundingClientRect,
-  BoundingRectI
-} from "../Helpers/getBoundingClientRect"
+import { BoundingRectI } from "../Helpers/getBoundingClientRect"
 
 export type ProjectContainerTop = {
   name: string
@@ -12,43 +9,32 @@ export interface ProjectContainerBounding extends BoundingRectI {
   name: string
 }
 
-export class PortfolioState {
-  private projectsContainerBounding = []
-  private headerBounding = null
+export class Portfolio {
+  private renderedProjects = []
+  private elementPositions = {}
 
-  setHeaderBounding = (rect: BoundingRectI) => {
-    this.headerBounding = rect
+  addRenderedProject = projectData => {
+    this.renderedProjects = [
+      ...this.renderedProjects,
+      { ...projectData, index: this.renderedProjects.length }
+    ]
   }
 
-  setContainersBoundingClientRects = obj => {
-    this.projectsContainerBounding.push(obj)
+  getRenderedProjects = () => this.renderedProjects
+
+  getProjectsStartPosition = name => {
+    const projectIndex = this.getRenderedProjects().find(
+      project => project.name === name
+    ).index
+
+    return this.getRenderedProjects()
+      .slice(0, projectIndex)
+      .map(p => this.getElementBoundingRect(p.name).height)
+      .reduce((a, b) => a + b, 0)
   }
 
-  getProjectsContainerBounding = new Promise((res, rej) => {
-    setTimeout(() => {
-      if (this.projectsContainerBounding.length)
-        res(this.projectsContainerBounding)
-      setTimeout(() => {
-        if (this.projectsContainerBounding.length)
-          res(this.projectsContainerBounding)
-      }, 150)
-    }, 150)
-
-    setTimeout(() => {
-      if (!this.projectsContainerBounding.length) {
-        rej()
-      }
-    }, 1000)
-  })
-
-  getProjectsContainerAbsoluteTopPositions = async () =>
-    await this.getProjectsContainerBounding.then(
-      (containers: ProjectContainerBounding[]) =>
-        containers.map(
-          ({ name, height }, i): ProjectContainerTop => ({
-            name,
-            top: height * i
-          })
-        )
-    )
+  setElementBoundingRect = (element, boundingRect) => {
+    this.elementPositions[element] = boundingRect
+  }
+  getElementBoundingRect = element => this.elementPositions[element]
 }

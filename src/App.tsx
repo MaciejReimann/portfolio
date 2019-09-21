@@ -9,11 +9,11 @@ import { ProjectContainer } from "./Content/ProjectContainer"
 //
 import { FeaturedProjects } from "./Content/Projects/featured-projects"
 //
-import { PortfolioState } from "./State/portfolio-state"
+import { Portfolio } from "./State/portfolio-state"
 //
 import Tetris from "@maciejreimann/tetris"
 
-const portfolioState = new PortfolioState()
+const portfolioState = new Portfolio()
 
 export const PortfolioContext = createContext(portfolioState)
 
@@ -25,7 +25,7 @@ const App = () => {
         sidebar={<FixedSidebar content={<SidebarLinks />} />}
         content={FeaturedProjects.map(({ description, component }) => (
           <div key={description.name}>
-            <ProjectContainer {...description} key={description.name}>
+            <ProjectContainer description={description} key={description.name}>
               {component}
             </ProjectContainer>
           </div>

@@ -7,30 +7,26 @@ import styles from "./SidebarLinks.module.scss"
 
 const SidebarLinks = () => {
   const context = useContext(PortfolioContext)
-  const [projectsData, setProjectData] = useState(null)
-  const [topPosition, setTopPosition] = useState(0)
+  const [linkedProjects, setLinkedProjects] = useState(null)
 
   useEffect(() => {
-    !projectsData &&
-      context
-        .getProjectsContainerAbsoluteTopPositions()
-        .then(result => setProjectData(result))
-  })
+    const projects = context.getRenderedProjects()
+    !linkedProjects && setLinkedProjects(projects)
+  }, [linkedProjects])
 
-  useEffect(() => {
-    window.scrollTo({ top: topPosition, behavior: "smooth" })
-  }, [topPosition])
-
-  const handleClick = position => {
-    setTopPosition(position)
+  const scrollToStartPosition = name => {
+    const startPosition = context.getProjectsStartPosition(name)
+    window.scrollTo({ top: startPosition, behavior: "smooth" })
   }
 
   return (
     <div className={styles.wrapper}>
-      {projectsData &&
-        projectsData.map(({ name, top }, i) => (
+      {linkedProjects &&
+        linkedProjects.map(({ name }, i) => (
           <div className={styles.button} key={name}>
-            <IconButton onClick={() => handleClick(top)}>{name}</IconButton>
+            <IconButton onClick={() => scrollToStartPosition(name)}>
+              {name}
+            </IconButton>
           </div>
         ))}
     </div>
