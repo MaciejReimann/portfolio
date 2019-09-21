@@ -5,7 +5,51 @@
   height: $content-item-height;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  color: green;
   border: 4px solid pink;
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: 900;
+  display: flex;
+  justify-content: center;
+}
+
+.left {
+  width: 150px;
+}
+
+.links {
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  height: 20px;
+  width: 20xp;
+  border: 4px solid black;
+}
+
+.project {
+  width: 100%;
+  height: 100%;
+  border: 2px dashed black;
+}
+
+.footer {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.technologies {
+  font-size: 14px;
 }

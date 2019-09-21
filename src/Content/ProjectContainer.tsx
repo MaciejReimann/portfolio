@@ -25,8 +25,18 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
 
   return (
     <div className={styles.wrapper} ref={projectDiv}>
-      <div>{description.name}</div>
-      <div>{children}</div>
+      <div className={styles.header}>
+        <div className={styles.left}>some stuff</div>
+        <div className={styles.name}>{description.name}</div>
+        <div className={styles.links}>
+          <span className={styles.icon}>github</span>
+          <span className={styles.icon}>npm</span>
+        </div>
+      </div>
+      <div className={styles.project}>{children}</div>
+      <div className={styles.footer}>
+        <div className={styles.technologies}>technologies used</div>
+      </div>
     </div>
   )
 }
