@@ -1,0 +1,14 @@
+@import "src/_theme/_styles";
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.button {
+  cursor: pointer;
+}

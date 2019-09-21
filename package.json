@@ -16,26 +16,33 @@
     "@babel/preset-react": "^7.0.0",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.5",
+    "@types/webpack": "^4.39.0",
+    "@types/webpack-env": "^1.14.0",
     "babel-loader": "^8.0.6",
     "clean-webpack-plugin": "^3.0.0",
+    "css-loader": "^3.2.0",
+    "css-modules-typescript-loader": "^3.0.0",
     "dotenv-webpack": "^1.7.0",
     "html-webpack-plugin": "^3.2.0",
+    "mini-css-extract-plugin": "^0.8.0",
     "plugin": "^0.3.3",
+    "sass-loader": "^7.3.1",
     "source-map-loader": "^0.2.4",
+    "style-loader": "^1.0.0",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
     "webpack": "^4.39.2",
     "webpack-cli": "^3.3.5",
     "webpack-dev-server": "^3.8.0",
     "webpack-merge": "^4.2.1"
   },
   "dependencies": {
-    "@types/webpack": "^4.32.1",
-    "@types/webpack-env": "^1.14.0",
+    "@maciejreimann/tetris": "^1.2.7",
     "global": "^4.4.0",
     "http-server": "^0.11.1",
     "netlify-cli": "^2.11.23",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6",
-    "ts-loader": "^6.0.4",
-    "typescript": "^3.5.3"
+    "react-dom": "^16.8.6"
   }
 }

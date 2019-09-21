@@ -1,0 +1,8 @@
+@import "src/_theme/_styles";
+
+.wrapper {
+  width: inherit;
+  height: inherit;
+  position: fixed;
+  background-color: $sidebar-color;
+}

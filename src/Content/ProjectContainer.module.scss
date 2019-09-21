@@ -1,0 +1,11 @@
+@import "src/_theme/_styles";
+
+.wrapper {
+  width: 100%;
+  height: $content-item-height;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: green;
+  border: 4px solid pink;
+}

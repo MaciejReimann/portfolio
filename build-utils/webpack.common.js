@@ -2,10 +2,18 @@ const webpack = require("webpack");
 const path = require("path");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.tsx",
-  // Enable sourcemaps for debugging webpack's output.
+  output: {
+    path: path.join(__dirname, "../", "dist"),
+    publicPath: "/",
+    filename: "bundle.js"
+  },
+  resolve: {
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss"]
+  },
   module: {
     rules: [
       {
@@ -22,12 +30,41 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader"
+      },
+      {
+        test: /\.s?.css$/,
+        //  This tells webpack to match .scss / .css files against the first rule that’s valid.
+        //  If the .scss / .css file ends in .module.css, use css modules. Else, use global styles.
+        oneOf: [
+          {
+            test: /\.module\.s?.css$/,
+            use: [
+              { loader: "style-loader" },
+              { loader: "css-modules-typescript-loader" },
+              {
+                loader: "css-loader",
+                // TODO: see documentation for fine-tuning dev experience!
+                // https://github.com/webpack-contrib/css-loader
+                options: {
+                  // Enables/Disables CSS Modules and their configuration.
+                  modules: {
+                    localIdentName: "[name]__[local]"
+                    // TODO: check how to eliminate "module" from resolved classname
+                  },
+                  localsConvention: "camelCase"
+                }
+              },
+              { loader: "sass-loader" }
+            ]
+          },
+          {
+            use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"]
+          }
+        ]
       }
     ]
   },
-  resolve: {
-    extensions: [".ts", ".tsx", ".js"]
-  },
+
   plugins: [
     new HtmlWebpackPlugin({
       template: "./src/index.html"
@@ -35,11 +72,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin() // ??
   ],
-  output: {
-    path: path.join(__dirname, "../", "dist"),
-    publicPath: "/",
-    filename: "bundle.js"
-  },
+
   devServer: {
     contentBase: "./dist"
   }
