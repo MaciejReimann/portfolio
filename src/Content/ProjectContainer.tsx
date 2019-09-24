@@ -1,10 +1,12 @@
 import React, { FC, useRef, useEffect, useContext, useState } from "react"
+import classNames from "classnames/bind"
 
 import { PortfolioContext } from "../App"
 import { getBoundingClientRect } from "../Helpers/getBoundingClientRect"
 // import { attachControls } from "./Helpers/attachControls"
 
 import styles from "./ProjectContainer.module.scss"
+var cx = classNames.bind(styles)
 
 interface ProjectContainerProps {
   description: any
@@ -16,6 +18,9 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
   children
 }) => {
   const context = useContext(PortfolioContext)
+
+  const [isActive, setIsActive] = useState(null)
+
   const projectDiv = useRef(null)
 
   useEffect(() => {
@@ -23,10 +28,27 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
     context.setProjectBoundingRect(description.name, projectBoundingRect)
   })
 
-  // attachControls(description.name)
+  useEffect(() => {
+    window.addEventListener("scroll", handleScrollY)
+    return () => window.removeEventListener("scroll", handleScrollY)
+  })
+
+  useEffect(() => {
+    setIsActive(checkIfActive())
+  }, [isActive])
+
+  const handleScrollY = () => {
+    setIsActive(checkIfActive())
+  }
+
+  const checkIfActive = () =>
+    context.isProjectWithinMargin(description.name, window.scrollY)
 
   return (
-    <div className={styles.wrapper} ref={projectDiv}>
+    <div
+      className={cx(styles.wrapper, isActive && styles["wrapper--active"])}
+      ref={projectDiv}
+    >
       <div className={styles.header}>
         <div className={styles.left}>some stuff</div>
         <div className={styles.name}>{description.name}</div>

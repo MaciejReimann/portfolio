@@ -10,6 +10,8 @@ interface CssExports {
   'project': string;
   'technologies': string;
   'wrapper': string;
+  'wrapper--active': string;
+  'wrapperActive': string;
 }
 declare const cssExports: CssExports;
 export = cssExports;

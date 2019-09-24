@@ -10,7 +10,7 @@ export interface ProjectI {
 
 export class Portfolio {
   public featuredProjects: ProjectI[]
-  private clientY = 0
+  private activationMargin = 150
 
   constructor(featuredProjects) {
     this.featuredProjects = featuredProjects
@@ -32,23 +32,14 @@ export class Portfolio {
       .reduce((a, b) => a + b, 0)
   }
 
-  // getActiveProject = () => {
-  //   const heights = this.featuredProjects.map(p =>
-  //     this.getProjectsStartPosition(p.description.name)
-  //   )
-  //   console.log(heights)
-  // }
+  isProjectWithinMargin = (name, dist) =>
+    Math.abs(this.getProjectsStartPosition(name) - dist) < this.activationMargin
 
   setProjectBoundingRect = (name, boundingRect) => {
     this.featuredProjects = this.featuredProjects.map(p =>
       p.description.name === name ? { ...p, boundingRect } : p
     )
-    console.log(this.featuredProjects)
-  }
-
-  setClientScrollY = y => {
-    this.clientY = y
-    // console.log(this.clientY)
+    // console.log(this.featuredProjects)
   }
 
   private getElementBoundingRect = name =>

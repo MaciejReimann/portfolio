@@ -9,15 +9,6 @@ import styles from "./ContentWrapper.module.scss"
 const ContentWrapper = () => {
   const context = useContext(PortfolioContext)
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScrollY)
-    return () => window.removeEventListener("scroll", handleScrollY)
-  }, [])
-
-  const handleScrollY = () => context.setClientScrollY(window.scrollY)
-
-  // context.getActiveProject()
-
   return (
     <div className={styles.wrapper}>
       {context.featuredProjects.map(({ description, component }) => (

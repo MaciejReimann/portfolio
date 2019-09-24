@@ -38,6 +38,7 @@
   },
   "dependencies": {
     "@maciejreimann/tetris": "^1.2.7",
+    "classnames": "^2.2.6",
     "global": "^4.4.0",
     "http-server": "^0.11.1",
     "netlify-cli": "^2.11.23",
