@@ -12,17 +12,16 @@ import { FeaturedProjects } from "./Content/Projects/featured-projects"
 import { Portfolio } from "./State/portfolio-state"
 //
 
-const portfolioState = new Portfolio()
+const portfolioState = new Portfolio(FeaturedProjects)
 export const PortfolioContext = createContext(portfolioState)
 
 const App = () => {
-  window.addEventListener("scroll", () => console.log(window.scrollY))
   return (
     <PortfolioContext.Provider value={portfolioState}>
       <SiteLayout
         header={<FixedHeader />}
         sidebar={<FixedSidebar content={<SidebarLinks />} />}
-        content={<ContentWrapper projects={FeaturedProjects} />}
+        content={<ContentWrapper />}
       />
     </PortfolioContext.Provider>
   )

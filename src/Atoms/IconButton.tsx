@@ -1,16 +1,15 @@
-import React from "react";
+import React from "react"
 
-import styles from "./IconButton.module.scss";
+import styles from "./IconButton.module.scss"
 
 export const IconButton = ({ onClick, children }) => {
   const handleClick = () => {
-    console.log("dupa");
-    onClick();
-  };
+    onClick()
+  }
 
   return (
     <span className={styles.wrapper} onClick={handleClick}>
       {children}
     </span>
-  );
-};
+  )
+}

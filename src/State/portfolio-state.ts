@@ -1,40 +1,59 @@
 import { BoundingRectI } from "../Helpers/getBoundingClientRect"
 
-export type ProjectContainerTop = {
-  name: string
-  top: number
-}
-
-export interface ProjectContainerBounding extends BoundingRectI {
-  name: string
+export interface ProjectI {
+  description: {
+    name: string
+  }
+  component: JSX.Element
+  boundingRect?: any
 }
 
 export class Portfolio {
-  private renderedProjects = []
-  private elementPositions = {}
+  public featuredProjects: ProjectI[]
+  private clientY = 0
 
-  addRenderedProject = projectData => {
-    this.renderedProjects = [
-      ...this.renderedProjects,
-      { ...projectData, index: this.renderedProjects.length }
-    ]
+  constructor(featuredProjects) {
+    this.featuredProjects = featuredProjects
   }
 
-  getRenderedProjects = () => this.renderedProjects
+  getProjectDataForSideMenu = (): { name: string }[] =>
+    this.featuredProjects.map(p => ({
+      name: p.description.name
+    }))
 
   getProjectsStartPosition = name => {
-    const projectIndex = this.getRenderedProjects().find(
-      project => project.name === name
-    ).index
+    const projectIndex = this.featuredProjects.indexOf(
+      this.featuredProjects.find(project => project.description.name === name)
+    )
 
-    return this.getRenderedProjects()
+    return this.featuredProjects
       .slice(0, projectIndex)
-      .map(p => this.getElementBoundingRect(p.name).height)
+      .map(p => this.getElementBoundingRect(p.description.name).height)
       .reduce((a, b) => a + b, 0)
   }
 
-  setElementBoundingRect = (element, boundingRect) => {
-    this.elementPositions[element] = boundingRect
+  // getActiveProject = () => {
+  //   const heights = this.featuredProjects.map(p =>
+  //     this.getProjectsStartPosition(p.description.name)
+  //   )
+  //   console.log(heights)
+  // }
+
+  setProjectBoundingRect = (name, boundingRect) => {
+    this.featuredProjects = this.featuredProjects.map(p =>
+      p.description.name === name ? { ...p, boundingRect } : p
+    )
+    console.log(this.featuredProjects)
   }
-  getElementBoundingRect = element => this.elementPositions[element]
+
+  setClientScrollY = y => {
+    this.clientY = y
+    // console.log(this.clientY)
+  }
+
+  private getElementBoundingRect = name =>
+    this.getProjectByName(name).boundingRect
+
+  private getProjectByName = name =>
+    this.featuredProjects.find(p => p.description.name === name)
 }

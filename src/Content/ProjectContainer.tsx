@@ -18,11 +18,9 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
   const context = useContext(PortfolioContext)
   const projectDiv = useRef(null)
 
-  context.addRenderedProject(description)
-
   useEffect(() => {
     const projectBoundingRect = getBoundingClientRect(projectDiv.current)
-    context.setElementBoundingRect(description.name, projectBoundingRect)
+    context.setProjectBoundingRect(description.name, projectBoundingRect)
   })
 
   // attachControls(description.name)

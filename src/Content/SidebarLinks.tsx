@@ -10,7 +10,7 @@ const SidebarLinks = () => {
   const [linkedProjects, setLinkedProjects] = useState(null)
 
   useEffect(() => {
-    const projects = context.getRenderedProjects()
+    const projects = context.getProjectDataForSideMenu()
     !linkedProjects && setLinkedProjects(projects)
   }, [linkedProjects])
 
