@@ -4,7 +4,7 @@ export interface ProjectI {
   description: {
     name: string
   }
-  component: JSX.Element
+  component: JSX.Element | any
   boundingRect?: any
 }
 

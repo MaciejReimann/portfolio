@@ -3,6 +3,7 @@ import React, { useEffect, useContext } from "react"
 import { PortfolioContext } from "../App"
 import Footer from "./Footer"
 import { ProjectContainer } from "../Content/ProjectContainer"
+import GameWrapper from "../Content/ProjectWrapper"
 
 import styles from "./ContentWrapper.module.scss"
 
@@ -14,7 +15,7 @@ const ContentWrapper = () => {
       {context.featuredProjects.map(({ description, component }) => (
         <div key={description.name}>
           <ProjectContainer description={description} key={description.name}>
-            {component}
+            {GameWrapper(description.name, component)}
           </ProjectContainer>
         </div>
       ))}
