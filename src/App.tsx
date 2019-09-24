@@ -4,22 +4,19 @@ import SiteLayout from "./Layout/SiteLayout"
 import FixedHeader from "./Layout/FixedHeader"
 import FixedSidebar from "./Layout/FixedSidebar"
 import ContentWrapper from "./Layout/ContentWrapper"
-
 //
 import SidebarLinks from "./Content/SidebarLinks"
-
 //
 import { FeaturedProjects } from "./Content/Projects/featured-projects"
 //
 import { Portfolio } from "./State/portfolio-state"
 //
-import Tetris from "@maciejreimann/tetris"
 
 const portfolioState = new Portfolio()
-
 export const PortfolioContext = createContext(portfolioState)
 
 const App = () => {
+  window.addEventListener("scroll", () => console.log(window.scrollY))
   return (
     <PortfolioContext.Provider value={portfolioState}>
       <SiteLayout
