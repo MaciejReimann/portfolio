@@ -16,6 +16,7 @@ const portfolioState = new Portfolio()
 export const PortfolioContext = createContext(portfolioState)
 
 const App = () => {
+  window.addEventListener("scroll", () => console.log(window.scrollY))
   return (
     <PortfolioContext.Provider value={portfolioState}>
       <SiteLayout

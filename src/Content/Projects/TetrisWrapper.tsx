@@ -5,7 +5,7 @@ import styles from "./TetrisWrapper.module.scss"
 
 const TetrisWrapper = () => {
   const tetris = Tetris
-  console.log(tetris)
+
   return (
     <div className={styles.wrapper}>
       <div>

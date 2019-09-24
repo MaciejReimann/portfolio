@@ -1,6 +1,8 @@
-import React, { FC, useRef, useEffect, useContext } from "react"
+import React, { FC, useRef, useEffect, useContext, useState } from "react"
+
 import { PortfolioContext } from "../App"
 import { getBoundingClientRect } from "../Helpers/getBoundingClientRect"
+// import { attachControls } from "./Helpers/attachControls"
 
 import styles from "./ProjectContainer.module.scss"
 
@@ -22,6 +24,8 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
     const projectBoundingRect = getBoundingClientRect(projectDiv.current)
     context.setElementBoundingRect(description.name, projectBoundingRect)
   })
+
+  // attachControls(description.name)
 
   return (
     <div className={styles.wrapper} ref={projectDiv}>
