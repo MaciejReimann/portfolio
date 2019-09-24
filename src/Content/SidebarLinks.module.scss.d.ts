@@ -2,6 +2,8 @@
 // Please do not change this file!
 interface CssExports {
   'button': string;
+  'button--active': string;
+  'buttonActive': string;
   'wrapper': string;
 }
 declare const cssExports: CssExports;

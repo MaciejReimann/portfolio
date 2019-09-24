@@ -11,4 +11,8 @@
 
 .button {
   cursor: pointer;
+
+  &--active {
+    border: 8px solid rgb(148, 89, 204);
+  }
 }

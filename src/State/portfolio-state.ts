@@ -11,15 +11,24 @@ export interface ProjectI {
 export class Portfolio {
   public featuredProjects: ProjectI[]
   private activationMargin = 150
+  private scrollY = 0
 
   constructor(featuredProjects) {
     this.featuredProjects = featuredProjects
   }
 
+  setScrollY = y => (this.scrollY = y)
+
   getProjectDataForSideMenu = (): { name: string }[] =>
     this.featuredProjects.map(p => ({
-      name: p.description.name
+      name: p.description.name,
+      isActive: this.isProjectWithinMargin(p.description.name)
     }))
+
+  getActiveProject = () =>
+    this.featuredProjects.find(p =>
+      this.isProjectWithinMargin(p.description.name)
+    )
 
   getProjectsStartPosition = name => {
     const projectIndex = this.featuredProjects.indexOf(
@@ -32,14 +41,14 @@ export class Portfolio {
       .reduce((a, b) => a + b, 0)
   }
 
-  isProjectWithinMargin = (name, dist) =>
-    Math.abs(this.getProjectsStartPosition(name) - dist) < this.activationMargin
+  isProjectWithinMargin = name =>
+    Math.abs(this.getProjectsStartPosition(name) - this.scrollY) <
+    this.activationMargin
 
   setProjectBoundingRect = (name, boundingRect) => {
     this.featuredProjects = this.featuredProjects.map(p =>
       p.description.name === name ? { ...p, boundingRect } : p
     )
-    // console.log(this.featuredProjects)
   }
 
   private getElementBoundingRect = name =>

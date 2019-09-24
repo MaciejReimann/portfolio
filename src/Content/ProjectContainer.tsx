@@ -1,4 +1,4 @@
-import React, { FC, useRef, useEffect, useContext, useState } from "react"
+import React, { FC, useCallback, useEffect, useContext, useState } from "react"
 import classNames from "classnames/bind"
 
 import { PortfolioContext } from "../App"
@@ -21,12 +21,12 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
 
   const [isActive, setIsActive] = useState(null)
 
-  const projectDiv = useRef(null)
-
-  useEffect(() => {
-    const projectBoundingRect = getBoundingClientRect(projectDiv.current)
-    context.setProjectBoundingRect(description.name, projectBoundingRect)
-  })
+  const projectRef = useCallback(node => {
+    if (node !== null) {
+      const projectBoundingRect = getBoundingClientRect(node)
+      context.setProjectBoundingRect(description.name, projectBoundingRect)
+    }
+  }, [])
 
   useEffect(() => {
     window.addEventListener("scroll", handleScrollY)
@@ -38,16 +38,16 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
   }, [isActive])
 
   const handleScrollY = () => {
+    context.setScrollY(window.scrollY)
     setIsActive(checkIfActive())
   }
 
-  const checkIfActive = () =>
-    context.isProjectWithinMargin(description.name, window.scrollY)
+  const checkIfActive = () => context.isProjectWithinMargin(description.name)
 
   return (
     <div
       className={cx(styles.wrapper, isActive && styles["wrapper--active"])}
-      ref={projectDiv}
+      ref={projectRef}
     >
       <div className={styles.header}>
         <div className={styles.left}>some stuff</div>
