@@ -1,11 +1,10 @@
-import { BoundingRectI } from "../Helpers/getBoundingClientRect"
-
 export interface ProjectI {
   description: {
     name: string
   }
-  component: JSX.Element | any
+  config?: any
   boundingRect?: any
+  project?: (config) => JSX.Element | any
 }
 
 export class Portfolio {

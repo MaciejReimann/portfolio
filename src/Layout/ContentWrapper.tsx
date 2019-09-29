@@ -1,9 +1,8 @@
-import React, { useEffect, useContext } from "react"
+import React, { useContext } from "react"
 
 import { PortfolioContext } from "../App"
 import Footer from "./Footer"
 import { ProjectContainer } from "../Content/ProjectContainer"
-import GameWrapper from "../Content/ProjectWrapper"
 
 import styles from "./ContentWrapper.module.scss"
 
@@ -12,11 +11,13 @@ const ContentWrapper = () => {
 
   return (
     <div className={styles.wrapper}>
-      {context.featuredProjects.map(({ description, component }) => (
+      {context.featuredProjects.map(({ description, project, config }) => (
         <div key={description.name}>
-          <ProjectContainer description={description} key={description.name}>
-            {GameWrapper(description.name, component)}
-          </ProjectContainer>
+          <ProjectContainer
+            description={description}
+            id={description.name}
+            displayProject={() => project(config)}
+          />
         </div>
       ))}
       <footer className={styles.footer}>

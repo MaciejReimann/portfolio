@@ -10,12 +10,14 @@ var cx = classNames.bind(styles)
 
 interface ProjectContainerProps {
   description: any
-  children: any
+  id: any
+  displayProject: any
 }
 
 export const ProjectContainer: FC<ProjectContainerProps> = ({
   description,
-  children
+  id,
+  displayProject
 }) => {
   const context = useContext(PortfolioContext)
 
@@ -48,6 +50,7 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
     <div
       className={cx(styles.wrapper, isActive && styles["wrapper--active"])}
       ref={projectRef}
+      key={id}
     >
       <div className={styles.header}>
         <div className={styles.left}>some stuff</div>
@@ -57,7 +60,7 @@ export const ProjectContainer: FC<ProjectContainerProps> = ({
           <span className={styles.icon}>npm</span>
         </div>
       </div>
-      <div className={styles.project}>{isActive && children}</div>
+      <div className={styles.project}>{isActive && displayProject()}</div>
       <div className={styles.footer}>
         <div className={styles.technologies}>technologies used</div>
       </div>
