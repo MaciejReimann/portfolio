@@ -9,13 +9,15 @@ import TetrisAdapter from "./tetris-adapter"
 const ReactTetris = ({ config }) => {
   const tetris = new TetrisAdapter(config)
 
+  console.log(tetris.getGameboard())
+
   const handler = e => keydownHandler(e, config.controls, tetris)
 
   const mainCanvasRef = useRef(null)
   const smallCanvasRef = useRef(null)
 
   useEffect(() => {
-    const tetrisOnCanvas = new TetrisOnCanvas(config)
+    const tetrisOnCanvas = new TetrisOnCanvas(config, tetris, 10)
     tetris.addObserver(tetrisOnCanvas.render)
     tetrisOnCanvas.setCanvas(mainCanvasRef.current)
   }, [])

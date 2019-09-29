@@ -14,7 +14,8 @@ export const FeaturedProjects: ProjectI[] = [
       controls: {
         Space: "start",
         ArrowLeft: "moveLeft",
-        ArrowRight: "moveRight"
+        ArrowRight: "moveRight",
+        ArrowDown: "moveDown"
       }
     }
   },

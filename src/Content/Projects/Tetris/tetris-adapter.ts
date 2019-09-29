@@ -16,14 +16,12 @@ class TetrisAdapter {
     this.observers = [...this.observers, observer]
   }
 
-  getGameboard = () => this.tetris.getGameboard()
-
   on = cb => {
     fire([...this.observers, cb])
     return {
-      start: cb => this.tetris.start(cb),
-      stop: cb => this.tetris.stop(cb),
-      pause: cb => this.tetris.pause(cb),
+      start: cb => this.tetris.startGame(cb),
+      stop: cb => this.tetris.stopGame(cb),
+      pause: cb => this.tetris.pauseGame(cb),
       moveLeft: cb => this.tetris.moveLeft(cb),
       moveRight: cb => this.tetris.moveRight(cb),
       moveDown: cb => this.tetris.moveDown(cb),
@@ -32,6 +30,9 @@ class TetrisAdapter {
       turnRight: cb => this.tetris.turnLeft(cb)
     }
   }
+
+  getConfig = () => this.tetris.getConfig()
+  getGameboard = () => this.tetris.getGameboard()
 
   private updateGameboard = () => {
     this.onGameboardChange(this.getGameboard())
