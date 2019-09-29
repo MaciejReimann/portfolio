@@ -1,14 +1,13 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useRef } from "react"
 
 import styles from "./ReactTetris.module.scss"
 
-import { keydownHandler } from "../../Helpers/keydownHandler"
-
+import { keydownHandler } from "../../../Helpers/keydownHandler"
 import { TetrisOnCanvas } from "./tetris-on-canvas"
-import Tetris from "./tetris"
+import TetrisAdapter from "./tetris-adapter"
 
 const ReactTetris = ({ config }) => {
-  const tetris = new Tetris(config)
+  const tetris = new TetrisAdapter(config)
 
   const handler = e => keydownHandler(e, config.controls, tetris)
 
@@ -17,7 +16,7 @@ const ReactTetris = ({ config }) => {
 
   useEffect(() => {
     const tetrisOnCanvas = new TetrisOnCanvas(config)
-    tetris.setObservers(tetrisOnCanvas.render)
+    tetris.addObserver(tetrisOnCanvas.render)
     tetrisOnCanvas.setCanvas(mainCanvasRef.current)
   }, [])
 

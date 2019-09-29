@@ -3,7 +3,6 @@ import classNames from "classnames/bind"
 
 import { PortfolioContext } from "../App"
 import { getBoundingClientRect } from "../Helpers/getBoundingClientRect"
-// import { attachControls } from "./Helpers/attachControls"
 
 import styles from "./ProjectContainer.module.scss"
 var cx = classNames.bind(styles)
